@@ -41,4 +41,25 @@ $( document ).ready(function() {
 		newEstimate.addToLineItemsList(newLineItem);
 	});
 
+		$("#addBowTie").click(function(){
+		console.log("Added a bow tie!");
+		id = newEstimate.nextLineItemID();
+		newLineItem = new LineItem(id, true, 1, "bow tie", 45, "");
+		newEstimate.addToLineItemsList(newLineItem);
+	});
+
+		$("#addScarf").click(function(){
+		console.log("Added a scarf!");
+		id = newEstimate.nextLineItemID();
+		newLineItem = new LineItem(id, true, 1, "scarf", 45, "");
+		newEstimate.addToLineItemsList(newLineItem);
+	});
+
+		$("#addPocketSquare").click(function(){
+		console.log("Added a pocket square!");
+		id = newEstimate.nextLineItemID();
+		newLineItem = new LineItem(id, true, 1, "pocket square", 15, "");
+		newEstimate.addToLineItemsList(newLineItem);
+	});
+
 });
