@@ -39,6 +39,10 @@ $( document ).ready(function() {
 		id = newEstimate.nextLineItemID();
 		newLineItem = new LineItem(id, true, 1, "necktie", 45, "std");
 		newEstimate.addToLineItemsList(newLineItem);
+		var source = $('#necktie-template').html();
+		var template = Handlebars.compile(source);
+		var hmm = template({identifier: id});
+		$("#line-items").append(hmm);
 	});
 
 		$("#addBowTie").click(function(){
