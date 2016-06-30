@@ -29,7 +29,7 @@ $( document ).ready(function() {
 		this.quantity = 1;
 		this.identifier = theIdentifier;
 		this.product = theProduct.name;
-		this.basePrice = theProduct.basePrice;
+		this.price = theProduct.basePrice;
 		this.options = theProduct.options.optionOne;
 	}
 
@@ -54,9 +54,14 @@ $( document ).ready(function() {
 			id = thisEstimate.nextLineItemID();
 			newLineItem = new LineItem(id, productToAdd);
 			thisEstimate.addToLineItemsList(newLineItem);
-			var source = $("#" + templateName).html();
+			var source = $("#product-template").html();
 			var template = Handlebars.compile(source);
-			var productTemplate = template({identifier: id});
+			var productTemplate = template({
+				identifier: id,
+				productName: productName,
+				price: productToAdd.basePrice,
+				isNecktie: productName == "necktie"
+			});
 			$("#line-items").append(productTemplate);
 			$(".remove").click(function(){
 				console.log(this.id);

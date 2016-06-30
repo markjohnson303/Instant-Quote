@@ -4,7 +4,7 @@
 <head>
 	<title>Instant Estimate</title>
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-	<link href="styles/style.css" type="text/css"/>	
+	<link rel="stylesheet" href="styles/style.css" type="text/css"/>	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.0.0.min.js" integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="scripts/app.js"></script>
@@ -13,11 +13,11 @@
 <body>
 
 	<!-- NECKTIE TEMPLATE -->
-	<script id="necktie-template" type="text/x-handlebars-template">
+	<script id="product-template" type="text/x-handlebars-template">
 		<div class="panel panel-default line-item" id="line-item-{{identifier}}">
 			<div class="panel-heading">
 
-				<h3 class="panel-title">Necktie | $90 (2 @ $45 each)<span class="glyphicon glyphicon-remove remove pull-right" id="remove-{{identifier}}"></span></h3>
+				<h3 class="panel-title"><span class="product-name">{{productName}}</span> | <span id="line-item-price-{{id}}" class="line-item-price">${{price}}</span> (1 @ ${{price}} each)<span class="glyphicon glyphicon-remove remove pull-right" id="remove-{{identifier}}"></span></h3>
 			</div>
 			<div class="panel-body">
 				<form class="form-horizontal" id="form-{{identifier}}">
@@ -27,6 +27,7 @@
 							<input type="number" min="1" class="form-control" id="quantity-{{identifier}}" value="1">
 						</div>
 					</div>
+					{{#if isNecktie}}
 					<div class="form-group">
 						<label for="tie-length-{{identifier}}" min="1" class="col-sm-3 control-label">Options</label>
 						<div class="col-sm-9">
@@ -37,70 +38,12 @@
 							</select>
 						</div>
 					</div>
+					{{/if}}
 				</form>
 			</div>
 		</div>
 	</script>
 
-	<!-- BOW TIE TEMPLATE -->
-	<script id="bow-tie-template" type="text/x-handlebars-template">
-		<div class="panel panel-default line-item" id="line-item-{{identifier}}">
-			<div class="panel-heading">
-
-				<h3 class="panel-title">Bow Tie | $90 (2 @ $45 each)<span class="glyphicon glyphicon-remove remove pull-right" id="remove-{{identifier}}"></span></h3>
-			</div>
-			<div class="panel-body">
-				<form class="form-horizontal" id="form-{{identifier}}">
-					<div class="form-group">
-						<label for="quantity-{{identifier}}" class="col-sm-3 control-label">Qauntity</label>
-						<div class="col-sm-9">
-							<input type="number" min="1" class="form-control" id="quantity-{{identifier}}" value="1">
-						</div>
-					</div>
-				</div>
-			</form>
-		</div>
-	</script>
-
-	<!-- SCARF TEMPLATE -->
-	<script id="scarf-template" type="text/x-handlebars-template">
-		<div class="panel panel-default line-item" id="line-item-{{identifier}}">
-			<div class="panel-heading">
-
-				<h3 class="panel-title">Scarf | $90 (2 @ $45 each)<span class="glyphicon glyphicon-remove remove pull-right" id="remove-{{identifier}}"></span></h3>
-			</div>
-			<div class="panel-body">
-				<form class="form-horizontal" id="form-{{identifier}}">
-					<div class="form-group">
-						<label for="quantity-{{identifier}}" class="col-sm-3 control-label">Qauntity</label>
-						<div class="col-sm-9">
-							<input type="number" min="1" class="form-control" id="quantity-{{identifier}}" value="1">
-						</div>
-					</div>
-				</div>
-			</form>
-		</div>
-	</script>
-
-	<!-- POCKET SQUARE TEMPLATE -->
-	<script id="pocket-square-template" type="text/x-handlebars-template">
-		<div class="panel panel-default line-item" id="line-item-{{identifier}}">
-			<div class="panel-heading">
-
-				<h3 class="panel-title">Pocket Square | $30 (2 @ $15 each)<span class="glyphicon glyphicon-remove remove pull-right" id="remove-{{identifier}}"></span></h3>
-			</div>
-			<div class="panel-body">
-				<form class="form-horizontal" id="form-{{identifier}}">
-					<div class="form-group">
-						<label for="quantity-{{identifier}}" class="col-sm-3 control-label">Qauntity</label>
-						<div class="col-sm-9">
-							<input type="number" min="1" class="form-control" id="quantity-{{identifier}}" value="1">
-						</div>
-					</div>
-				</div>
-			</form>
-		</div>
-	</script>
 	<h1 class="text-center">Get an Instant Estimate</h1>
 	<p class="lead text-center">Start by adding the products you are interested in to get an idea of the cost</p>
 	<div class="container-fluid">
