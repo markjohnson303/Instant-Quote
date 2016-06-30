@@ -5,3 +5,11 @@
 .glyphicon-remove{
     margin-left: 10px;
 }
+
+.normal-margin{
+    margin:10px;
+}
+
+.no-top-padding{
+    padding-top: 0px;
+}

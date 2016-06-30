@@ -17,7 +17,7 @@
 		<div class="panel panel-default line-item" id="line-item-{{identifier}}">
 			<div class="panel-heading">
 
-				<h3 class="panel-title"><span class="product-name">{{productName}}</span><span class="pull-right"> $<span id="line-item-price-{{identifier}}">{{price}}</span> (<span id="line-item-quantity-{{identifier}}"">1</span> @ ${{price}} each)<span class="glyphicon glyphicon-remove remove" id="remove-{{identifier}}"></span></span></h3>
+				<h3 class="panel-title"><span class="badge panel-title" id="line-item-quantity-{{identifier}}"">1</span><span class="product-name panel-title"> {{productName}} </span><span class="pull-right"> $<span id="line-item-price-{{identifier}}">{{price}}</span> ($<span id="modified-unit-price-{{identifier}}">{{price}}</span> each)<span class="glyphicon glyphicon-remove remove" id="remove-{{identifier}}"></span></span></h3>
 			</div>
 			<div class="panel-body">
 				<form class="form-horizontal" id="form-{{identifier}}">
@@ -31,7 +31,7 @@
 					<div class="form-group">
 						<label for="tie-length-{{identifier}}" min="1" class="col-sm-3 control-label">Options</label>
 						<div class="col-sm-9">
-							<select class="form-control" id="tie-length-{{identifier}}" value="1">
+							<select class="form-control options" id="tie-length-{{identifier}}" value="1" data-lineID="{{identifier}}">
 								<option>Standard Length</option>
 								<option>Extra-Long</option>
 								<option>Extra-Extra-Long</option>
@@ -54,13 +54,10 @@
 	<p class="lead text-center">Add the products you're interested in to get an idea of the cost.</p>
 				<div id="line-items">
 				</div>
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">
-							Add Products
-						</h3>
-					</div>
-					<div class="panel-body">
+					<div class="well no-top-padding">
+						<div class=row>
+						<h4 class="text-center  normal-margin">Add Products</h4>
+						</div>
 						<div class="row">
 							<div class="col-sm-6">
 								<div id="addNecktie" class="btn btn-default btn-block">
