@@ -3,13 +3,14 @@ $( document ).ready(function() {
 
 	function Estimate (theLineItemsList, theTotalPrice){
 		this.lineItemsList = theLineItemsList;
-		this.theTotalPrice = theTotalPrice;
+		this.totalPrice = theTotalPrice;
 	}
 
 	Estimate.prototype = {
 		constructor: Estimate,
 		addToLineItemsList:function (lineItemToAdd){
 			this.lineItemsList.push(lineItemToAdd);
+			thisEstimate.updateTotalPrice();
 		},
 		nextLineItemID:function (){
 			var nextID;
@@ -37,6 +38,18 @@ $( document ).ready(function() {
 				}
 				changedLineItem.linePrice = (changedLineItem.unitPrice + changedLineItem.modifierPrice) * changedLineItem.quantity;
 			}
+			thisEstimate.updateTotalPrice();
+		},
+		updateTotalPrice: function(){
+			var lineItems = thisEstimate.lineItemsList;
+			var totalPrice = 20;
+			for (var i = lineItems.length - 1; i >= 0; i--) {
+				if (lineItems[i].active){
+					totalPrice += lineItems[i].linePrice;
+				}
+			}
+			thisEstimate.totalPrice = totalPrice;
+			$("#total-price").text(totalPrice);
 		}
 	};
 
@@ -75,7 +88,7 @@ $( document ).ready(function() {
 				var result = str.substring(n + 1);
 				thisEstimate.lineItemsList[result].active = false;
 				$("#line-item-" + result).hide();
-
+				thisEstimate.updateTotalPrice();
 			});
 			$(".quantity").change(function(){
 				lineid = this.getAttribute("data-lineid");
