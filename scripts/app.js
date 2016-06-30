@@ -44,10 +44,13 @@ $( document ).ready(function() {
 		var template = Handlebars.compile(source);
 		var hmm = template({identifier: id});
 		$("#line-items").append(hmm);
-		$("#remove-" + id).click(function(){
-			console.log("remove " + id);
-			newEstimate.lineItemsList[id].active = false;
-			$("#line-item-" + id).hide();
+		$(".remove").click(function(){
+			console.log(this.id);
+			var str = this.id;
+			var n = str.lastIndexOf('-');
+			var result = str.substring(n + 1);
+			newEstimate.lineItemsList[result].active = false;
+			$("#line-item-" + result).hide();
 		});
 	});
 
@@ -60,10 +63,13 @@ $( document ).ready(function() {
 		var template = Handlebars.compile(source);
 		var hmm = template({identifier: id});
 		$("#line-items").append(hmm);
-		$("#remove-" + id).click(function(){
-			console.log("remove " + id);
-			newEstimate.lineItemsList[id].active = false;
-			$("#line-item-" + id).hide();
+				$(".remove").click(function(){
+			console.log(this.id);
+			var str = this.id;
+			var n = str.lastIndexOf('-');
+			var result = str.substring(n + 1);
+			newEstimate.lineItemsList[result].active = false;
+			$("#line-item-" + result).hide();
 		});
 	});
 
@@ -76,10 +82,13 @@ $( document ).ready(function() {
 		var template = Handlebars.compile(source);
 		var hmm = template({identifier: id});
 		$("#line-items").append(hmm);
-		$("#remove-" + id).click(function(){
-			console.log("remove " + id);
-			newEstimate.lineItemsList[id].active = false;
-			$("#line-item-" + id).hide();
+				$(".remove").click(function(){
+			console.log(this.id);
+			var str = this.id;
+			var n = str.lastIndexOf('-');
+			var result = str.substring(n + 1);
+			newEstimate.lineItemsList[result].active = false;
+			$("#line-item-" + result).hide();
 		});
 	});
 
@@ -92,10 +101,13 @@ $( document ).ready(function() {
 		var template = Handlebars.compile(source);
 		var hmm = template({identifier: id});
 		$("#line-items").append(hmm);
-		$("#remove-" + id).click(function(){
-			console.log("remove " + id);
-			newEstimate.lineItemsList[id].active = false;
-			$("#line-item-" + id).hide();
+				$(".remove").click(function(){
+			console.log(this.id);
+			var str = this.id;
+			var n = str.lastIndexOf('-');
+			var result = str.substring(n + 1);
+			newEstimate.lineItemsList[result].active = false;
+			$("#line-item-" + result).hide();
 		});
 	});
 
