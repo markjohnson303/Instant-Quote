@@ -1,7 +1,13 @@
+	function sayHello(){
+		console.log("hello");
+	}
+
 $( document ).ready(function() {
 
-	function Estimate (theLineItemsList){
+
+	function Estimate (theLineItemsList, theTotalPrice){
 		this.lineItemsList = theLineItemsList;
+		this.theTotalPrice = theTotalPrice;
 	}
 
 	Estimate.prototype = {
@@ -19,16 +25,24 @@ $( document ).ready(function() {
 			}
 			return nextID;
 		},
+		updateLineItem: function(lineItemID, changedField, newValue){
+			changedField = this.changedField;
+			changedLineItem = thisEstimate.lineItemsList[lineItemID];
+			changedLineItem.quantity = newValue;
+			changedLineItem.linePrice = newValue * changedLineItem.unitPrice;
+		}
 	};
 
-	thisEstimate = new Estimate([]);
+	thisEstimate = new Estimate([], 0);
 
 	function LineItem (theIdentifier, theProduct) {
 		this.active = true;
 		this.quantity = 1;
 		this.identifier = theIdentifier;
 		this.product = theProduct.name;
-		this.price = theProduct.basePrice;
+		this.unitPrice = theProduct.basePrice;
+		this.linePrice = theProduct.basePrice;
+		this.modifierPrice = 0;
 		this.options = theProduct.options.optionOne;
 	}
 
@@ -55,6 +69,16 @@ $( document ).ready(function() {
 				var result = str.substring(n + 1);
 				thisEstimate.lineItemsList[result].active = false;
 				$("#line-item-" + result).hide();
+
+			});
+			$(".quantity").change(function(){
+				lineid = this.getAttribute("data-lineid");
+				thisEstimate.updateLineItem(lineid, "quantity", this.value);
+				changedLineItem = thisEstimate.lineItemsList[lineid];
+				newQuantity = this.value;
+				$("#line-item-quantity-" + lineid).text(newQuantity);
+				$("#line-item-price-" + lineid).text(changedLineItem.linePrice);
+				console.log(changedLineItem.linePrice);
 			});
 		}
 	};
@@ -69,6 +93,8 @@ $( document ).ready(function() {
 	bowTie = new Product("bow tie", 45, {});
 	scarf = new Product("scarf", 45, {});
 	pocketSquare = new Product("pocket square", 15, {});
+
+
 
 	$("#addNecktie").click(LineItem.prototype.addProduct.bind($, necktie));
 	$("#addBowTie").click(LineItem.prototype.addProduct.bind($, bowTie));
