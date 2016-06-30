@@ -22,93 +22,56 @@ $( document ).ready(function() {
 		},
 	};
 
-	newEstimate = new Estimate([]);
+	thisEstimate = new Estimate([]);
 
-	function LineItem (theIdentifier, theActiveState, theQauntity, theType, theBasePrice, theTieLength) {
+	function LineItem (theIdentifier, theProduct) {
+		this.active = true;
+		this.quantity = 1;
 		this.identifier = theIdentifier;
-		this.active = theActiveState;
-		this.quantity = theQauntity;
-		this.type = theType;
-		this.basePrice = theBasePrice;
-		this.TieLength = theTieLength;
+		this.product = theProduct.name;
+		this.basePrice = theProduct.basePrice;
+		this.options = theProduct.options.optionOne;
 	}
 
+	function Product (theName, theBasePrice, theOptions){
+		this.name = theName;
+		this.basePrice = theBasePrice;
+		this.options = theOptions;
+	}
+
+	necktie = new Product("necktie", 45, {optionOne: "standard"});
+	bowTie = new Product("bow tie", 45, {});
+	scarf = new Product("scarf", 45, {});
+	pocketSquare = new Product("pocket square", 15, {});
 
 
-	$("#addNecktie").click(function(){
-		console.log("Added a tie!");
-		id = newEstimate.nextLineItemID();
-		newLineItem = new LineItem(id, true, 1, "necktie", 45, "std");
-		newEstimate.addToLineItemsList(newLineItem);
-		var source = $('#necktie-template').html();
-		var template = Handlebars.compile(source);
-		var hmm = template({identifier: id});
-		$("#line-items").append(hmm);
-		$(".remove").click(function(){
-			console.log(this.id);
-			var str = this.id;
-			var n = str.lastIndexOf('-');
-			var result = str.substring(n + 1);
-			newEstimate.lineItemsList[result].active = false;
-			$("#line-item-" + result).hide();
-		});
-	});
+	LineItem.prototype = {
+		constructor: LineItem,
+		addProduct:function (productToAdd){
+			var productName = productToAdd.name;
+			var productHyphenated = productName.replace(" ", "-");
+			var templateName = productHyphenated + "-template";
+			id = thisEstimate.nextLineItemID();
+			newLineItem = new LineItem(id, productToAdd);
+			thisEstimate.addToLineItemsList(newLineItem);
+			var source = $("#" + templateName).html();
+			var template = Handlebars.compile(source);
+			var productTemplate = template({identifier: id});
+			$("#line-items").append(productTemplate);
+			$(".remove").click(function(){
+				console.log(this.id);
+				var str = this.id;
+				var n = str.lastIndexOf('-');
+				var result = str.substring(n + 1);
+				thisEstimate.lineItemsList[result].active = false;
+				$("#line-item-" + result).hide();
+			});
+		}
+		
+	};
 
-	$("#addBowTie").click(function(){
-		console.log("Added a bow tie!");
-		id = newEstimate.nextLineItemID();
-		newLineItem = new LineItem(id, true, 1, "bow tie", 45, "");
-		newEstimate.addToLineItemsList(newLineItem);
-		var source = $('#bow-tie-template').html();
-		var template = Handlebars.compile(source);
-		var hmm = template({identifier: id});
-		$("#line-items").append(hmm);
-				$(".remove").click(function(){
-			console.log(this.id);
-			var str = this.id;
-			var n = str.lastIndexOf('-');
-			var result = str.substring(n + 1);
-			newEstimate.lineItemsList[result].active = false;
-			$("#line-item-" + result).hide();
-		});
-	});
-
-	$("#addScarf").click(function(){
-		console.log("Added a scarf!");
-		id = newEstimate.nextLineItemID();
-		newLineItem = new LineItem(id, true, 1, "scarf", 45, "");
-		newEstimate.addToLineItemsList(newLineItem);
-		var source = $('#scarf-template').html();
-		var template = Handlebars.compile(source);
-		var hmm = template({identifier: id});
-		$("#line-items").append(hmm);
-				$(".remove").click(function(){
-			console.log(this.id);
-			var str = this.id;
-			var n = str.lastIndexOf('-');
-			var result = str.substring(n + 1);
-			newEstimate.lineItemsList[result].active = false;
-			$("#line-item-" + result).hide();
-		});
-	});
-
-	$("#addPocketSquare").click(function(){
-		console.log("Added a pocket square!");
-		id = newEstimate.nextLineItemID();
-		newLineItem = new LineItem(id, true, 1, "pocket square", 15, "");
-		newEstimate.addToLineItemsList(newLineItem);
-		var source = $('#pocket-square-template').html();
-		var template = Handlebars.compile(source);
-		var hmm = template({identifier: id});
-		$("#line-items").append(hmm);
-				$(".remove").click(function(){
-			console.log(this.id);
-			var str = this.id;
-			var n = str.lastIndexOf('-');
-			var result = str.substring(n + 1);
-			newEstimate.lineItemsList[result].active = false;
-			$("#line-item-" + result).hide();
-		});
-	});
-
+	$("#addNecktie").click(LineItem.prototype.addProduct.bind($, necktie));
+	$("#addBowTie").click(LineItem.prototype.addProduct.bind($, bowTie));
+	$("#addScarf").click(LineItem.prototype.addProduct.bind($, scarf));
+	$("#addPocketSquare").click(LineItem.prototype.addProduct.bind($, pocketSquare));
 });
