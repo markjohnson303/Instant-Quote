@@ -5,7 +5,7 @@ $( document ).ready(function() {
 		this.lineItemsList = theLineItemsList;
 	}
 
-		Estimate.prototype = {
+	Estimate.prototype = {
 		constructor: Estimate,
 		addToLineItemsList:function (lineItemToAdd){
 			this.lineItemsList.push(lineItemToAdd);
@@ -34,6 +34,7 @@ $( document ).ready(function() {
 	}
 
 
+
 	$("#addNecktie").click(function(){
 		console.log("Added a tie!");
 		id = newEstimate.nextLineItemID();
@@ -43,9 +44,14 @@ $( document ).ready(function() {
 		var template = Handlebars.compile(source);
 		var hmm = template({identifier: id});
 		$("#line-items").append(hmm);
+		$("#remove-" + id).click(function(){
+			console.log("remove " + id);
+			newEstimate.lineItemsList[id].active = false;
+			$("#line-item-" + id).hide();
+		});
 	});
 
-		$("#addBowTie").click(function(){
+	$("#addBowTie").click(function(){
 		console.log("Added a bow tie!");
 		id = newEstimate.nextLineItemID();
 		newLineItem = new LineItem(id, true, 1, "bow tie", 45, "");
@@ -54,9 +60,14 @@ $( document ).ready(function() {
 		var template = Handlebars.compile(source);
 		var hmm = template({identifier: id});
 		$("#line-items").append(hmm);
+		$("#remove-" + id).click(function(){
+			console.log("remove " + id);
+			newEstimate.lineItemsList[id].active = false;
+			$("#line-item-" + id).hide();
+		});
 	});
 
-		$("#addScarf").click(function(){
+	$("#addScarf").click(function(){
 		console.log("Added a scarf!");
 		id = newEstimate.nextLineItemID();
 		newLineItem = new LineItem(id, true, 1, "scarf", 45, "");
@@ -65,9 +76,14 @@ $( document ).ready(function() {
 		var template = Handlebars.compile(source);
 		var hmm = template({identifier: id});
 		$("#line-items").append(hmm);
+		$("#remove-" + id).click(function(){
+			console.log("remove " + id);
+			newEstimate.lineItemsList[id].active = false;
+			$("#line-item-" + id).hide();
+		});
 	});
 
-		$("#addPocketSquare").click(function(){
+	$("#addPocketSquare").click(function(){
 		console.log("Added a pocket square!");
 		id = newEstimate.nextLineItemID();
 		newLineItem = new LineItem(id, true, 1, "pocket square", 15, "");
@@ -76,6 +92,11 @@ $( document ).ready(function() {
 		var template = Handlebars.compile(source);
 		var hmm = template({identifier: id});
 		$("#line-items").append(hmm);
+		$("#remove-" + id).click(function(){
+			console.log("remove " + id);
+			newEstimate.lineItemsList[id].active = false;
+			$("#line-item-" + id).hide();
+		});
 	});
 
 });
