@@ -1,5 +1,4 @@
 $( document ).ready(function() {
-	console.log("Ready!");
 
 	function Estimate (theLineItemsList){
 		this.lineItemsList = theLineItemsList;
@@ -33,24 +32,10 @@ $( document ).ready(function() {
 		this.options = theProduct.options.optionOne;
 	}
 
-	function Product (theName, theBasePrice, theOptions){
-		this.name = theName;
-		this.basePrice = theBasePrice;
-		this.options = theOptions;
-	}
-
-	necktie = new Product("necktie", 45, {optionOne: "standard"});
-	bowTie = new Product("bow tie", 45, {});
-	scarf = new Product("scarf", 45, {});
-	pocketSquare = new Product("pocket square", 15, {});
-
-
 	LineItem.prototype = {
 		constructor: LineItem,
 		addProduct:function (productToAdd){
 			var productName = productToAdd.name;
-			var productHyphenated = productName.replace(" ", "-");
-			var templateName = productHyphenated + "-template";
 			id = thisEstimate.nextLineItemID();
 			newLineItem = new LineItem(id, productToAdd);
 			thisEstimate.addToLineItemsList(newLineItem);
@@ -72,8 +57,18 @@ $( document ).ready(function() {
 				$("#line-item-" + result).hide();
 			});
 		}
-		
 	};
+
+	function Product (theName, theBasePrice, theOptions){
+		this.name = theName;
+		this.basePrice = theBasePrice;
+		this.options = theOptions;
+	}
+
+	necktie = new Product("necktie", 45, {optionOne: "standard"});
+	bowTie = new Product("bow tie", 45, {});
+	scarf = new Product("scarf", 45, {});
+	pocketSquare = new Product("pocket square", 15, {});
 
 	$("#addNecktie").click(LineItem.prototype.addProduct.bind($, necktie));
 	$("#addBowTie").click(LineItem.prototype.addProduct.bind($, bowTie));
