@@ -50,6 +50,10 @@ $( document ).ready(function() {
 		id = newEstimate.nextLineItemID();
 		newLineItem = new LineItem(id, true, 1, "bow tie", 45, "");
 		newEstimate.addToLineItemsList(newLineItem);
+		var source = $('#bow-tie-template').html();
+		var template = Handlebars.compile(source);
+		var hmm = template({identifier: id});
+		$("#line-items").append(hmm);
 	});
 
 		$("#addScarf").click(function(){
@@ -57,6 +61,10 @@ $( document ).ready(function() {
 		id = newEstimate.nextLineItemID();
 		newLineItem = new LineItem(id, true, 1, "scarf", 45, "");
 		newEstimate.addToLineItemsList(newLineItem);
+		var source = $('#scarf-template').html();
+		var template = Handlebars.compile(source);
+		var hmm = template({identifier: id});
+		$("#line-items").append(hmm);
 	});
 
 		$("#addPocketSquare").click(function(){
@@ -64,6 +72,10 @@ $( document ).ready(function() {
 		id = newEstimate.nextLineItemID();
 		newLineItem = new LineItem(id, true, 1, "pocket square", 15, "");
 		newEstimate.addToLineItemsList(newLineItem);
+		var source = $('#pocket-square-template').html();
+		var template = Handlebars.compile(source);
+		var hmm = template({identifier: id});
+		$("#line-items").append(hmm);
 	});
 
 });
