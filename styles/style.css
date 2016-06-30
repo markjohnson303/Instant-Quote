@@ -1,3 +1,7 @@
 .product-name{
     text-transform: capitalize;
 }
+
+.glyphicon-remove{
+    margin-left: 10px;
+}

@@ -17,7 +17,7 @@
 		<div class="panel panel-default line-item" id="line-item-{{identifier}}">
 			<div class="panel-heading">
 
-				<h3 class="panel-title"><span class="product-name">{{productName}}</span> | <span id="line-item-price-{{id}}" class="line-item-price">${{price}}</span> (1 @ ${{price}} each)<span class="glyphicon glyphicon-remove remove pull-right" id="remove-{{identifier}}"></span></h3>
+				<h3 class="panel-title"><span class="product-name">{{productName}}</span><span class="pull-right"> <span id="line-item-price-{{id}}" class="line-item-price">${{price}}</span> (1 @ ${{price}} each)<span class="glyphicon glyphicon-remove remove" id="remove-{{identifier}}"></span></span></h3>
 			</div>
 			<div class="panel-body">
 				<form class="form-horizontal" id="form-{{identifier}}">
@@ -44,19 +44,20 @@
 		</div>
 	</script>
 
-	<h1 class="text-center">Get an Instant Estimate</h1>
-	<p class="lead text-center">Start by adding the products you are interested in to get an idea of the cost</p>
+
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-3">
 			</div>
 			<div class="col-sm-6">
+				<h1 class="text-center">Get an Estimate</h1>
+	<p class="lead text-center">Add the products you're interested in to get an idea of the cost.</p>
 				<div id="line-items">
 				</div>
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h3 class="panel-title">
-							Add a Product to This Estimate
+							Add Products
 						</h3>
 					</div>
 					<div class="panel-body">
