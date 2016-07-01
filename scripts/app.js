@@ -56,9 +56,10 @@ $( document ).ready(function() {
 		setBulkRate: function(){
 			var bulkCount = thisEstimate.getBulkCount();
 			console.log(bulkCount);
+			var bulkRate;
 			switch (bulkCount) {
 				case bulkCount<5:
-				var bulkRate = 45;
+				bulkRate = 45;
 				console.Log(bulkRate);
 				break;
 				case bulkCount<10:

@@ -1,0 +1,60 @@
+Blue Hat: What were the objectives?
+	Render a game
+	Design logic for winning/ vis display
+	html/css/js files
+	KISS & DRY
+	JS or Jquery for DOM Manip
+	Deploy online
+	Semantic markup
+
+White Hat: What actually happenes? FACTS.
+	Charlie: 
+		Spent an hour on a bug
+
+	Kayce: 
+		Laid out goals for guideline, focused on following user stories
+		Got through most user stories
+		Problem with GH pages, fixing files on wrong branch, lost work
+
+	Holly:
+		Started late
+		Spent a lot of time writing pseudo code
+		Didn't get as many user stories done as hoped
+	Mark:
+		Almost finished all normal goals
+
+Yellow Hat: Wins
+	Caharlie
+		It works! Commited often.
+	Kayce
+		Got it working! Excited when able to tie things together
+	Holly
+		Excited about using
+	Mark
+		Mental win getting through the start
+
+Black Hat: Negatives
+	Charlie
+		frustrating bugs on things that should have been ovious
+		didnt get to spend as much time on design as he would have liked
+	Kayce
+		GH pages issue
+		Time efficiency - spent too much time on color
+	Holly
+		Time management
+
+	Mark
+
+Green Hat: Ideas for the future
+	Charlie
+		Working on desgin
+			wireframing
+			more colors, good backgrounds
+	Kayce
+		Work best in the mornings - didn't like lectures in the morning
+		Knowing when to stop when not making progress
+		Better understanding of stack overflow answers
+	Holly
+		Knowing when to talk away
+	Mark
+		Adding shipping
