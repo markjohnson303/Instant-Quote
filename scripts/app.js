@@ -1,6 +1,7 @@
 $( document ).ready(function() {
 
 
+
 	function Estimate (theLineItemsList, theTotalPrice){
 		this.lineItemsList = theLineItemsList;
 		this.totalPrice = theTotalPrice;
@@ -155,6 +156,9 @@ $( document ).ready(function() {
 					//$("#line-item-quantity-" + lineid).text(this);
 					$("#line-item-price-" + lineid).text(changedLineItem.linePrice);
 					$("#modified-unit-price-" + lineid).text(changedLineItem.unitPrice + changedLineItem.modifierPrice);
+				});
+				$('form').on('keypress', function(e) {
+			    return e.which !== 13;
 				});
 		}
 	};

@@ -22,15 +22,15 @@
 				<div class="panel-body">
 					<form class="form-horizontal" id="form-{{identifier}}">
 						<div class="form-group">
-							<label for="quantity-{{identifier}}" class="col-sm-3 control-label">Quantity</label>
-							<div class="col-sm-9">
-								<input type="number" min="1" class="form-control quantity" id="quantity-{{identifier}}" value="1" data-lineID="{{identifier}}">
+							<label for="quantity-{{identifier}}" class="col-md-3 control-label">Quantity</label>
+							<div class="col-md-9">
+								<input type="number" pattern="[0-9]*" inputmode="numeric" min="1" class="form-control quantity" id="quantity-{{identifier}}" value="1" data-lineID="{{identifier}}">
 							</div>
 						</div>
 						{{#if isNecktie}}
 						<div class="form-group">
-							<label for="tie-length-{{identifier}}" min="1" class="col-sm-3 control-label">Options</label>
-							<div class="col-sm-9">
+							<label for="tie-length-{{identifier}}" min="1" class="col-md-3 control-label">Options</label>
+							<div class="col-md-9">
 								<select class="form-control options" id="tie-length-{{identifier}}" value="1" data-lineID="{{identifier}}">
 									<option>Standard Length</option>
 									<option>Extra-Long</option>
@@ -47,9 +47,9 @@
 		<!-- PAGE CONTENT -->
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-sm-3">
+				<div class="col-md-3">
 				</div>
-				<div class="col-sm-6">
+				<div class="col-md-6">
 					<h1 class="text-center">Get an Estimate</h1>
 					<p class="lead text-center">Add the products you're interested in to get an idea of the cost.</p>
 					<div id="line-items">
@@ -59,7 +59,7 @@
 							<h4 class="text-center  normal-margin">Add Products</h4>
 						</div>
 						<div class="row">
-							<div class="col-sm-6">
+							<div class="col-md-6">
 								<div id="addNecktie" class="btn btn-default btn-block">
 									<span class="glyphicon glyphicon-plus"></span> Necktie
 								</div>
@@ -67,7 +67,7 @@
 							<div class="hidden-sm hidden-md hidden-lg row">
 								&nbsp
 							</div>
-							<div class="col-sm-6">
+							<div class="col-md-6">
 								<div id="addBowTie" class="btn btn-default btn-block">
 									<span class="glyphicon glyphicon-plus"></span> Bow Tie
 								</div>
@@ -77,15 +77,15 @@
 							&nbsp
 						</div>
 						<div class="row">
-							<div class="col-sm-6">
+							<div class="col-md-6">
 								<div id="addPocketSquare" class="btn btn-default btn-block">
 									<span class="glyphicon glyphicon-plus"></span> Pocket Square
 								</div>
 							</div>
-							<div class="hidden-sm hidden-md hidden-lg row">
+							<div class="hidden-md hidden-md hidden-lg row">
 								&nbsp
 							</div>
-							<div class="col-sm-6">
+							<div class="col-md-6">
 								<div id="addScarf" class="btn btn-default btn-block">
 									<span class="glyphicon glyphicon-plus"></span> Scarf
 								</div>
