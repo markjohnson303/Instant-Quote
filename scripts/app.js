@@ -4,6 +4,7 @@ $( document ).ready(function() {
 	function Estimate (theLineItemsList, theTotalPrice){
 		this.lineItemsList = theLineItemsList;
 		this.totalPrice = theTotalPrice;
+		this.bulkEligible = 0;
 	}
 
 	Estimate.prototype = {
@@ -39,6 +40,52 @@ $( document ).ready(function() {
 				changedLineItem.linePrice = (changedLineItem.unitPrice + changedLineItem.modifierPrice) * changedLineItem.quantity;
 			}
 			thisEstimate.updateTotalPrice();
+		},
+		getBulkCount: function(){
+			var lineItems = thisEstimate.lineItemsList;	
+			var bulkCount = 0;
+			for (var i = lineItems.length - 1; i >= 0; i--) {
+				productType = lineItems[i].product;
+				if (lineItems[i].active && ((productType == "necktie") || (productType == "bow tie") || (productType =="scarf"))){
+					bulkCount += lineItems[i].quantity;
+				}
+				
+			}
+			 return bulkCount;
+		},
+		setBulkRate: function(){
+			var bulkCount = thisEstimate.getBulkCount();
+			console.log(bulkCount);
+			switch (bulkCount) {
+				case bulkCount<5:
+				var bulkRate = 45;
+				console.Log(bulkRate);
+				break;
+				case bulkCount<10:
+				bulkRate = 41;
+				return bulkRate;
+				case bulkCount<10:
+				bulkRate = 41;
+				return bulkRate;
+				case bulkCount<25:
+				bulkRate = 38;
+				return bulkRate;
+				case bulkCount<50:
+				bulkRate = 36;
+				return bulkRate;
+				case bulkCount<100:
+				bulkRate = 33;
+				return bulkRate;
+				case bulkCount<250:
+				bulkRate = 30;
+				return bulkRate;
+				case bulkCount<500:
+				bulkRate = 27;
+				return bulkRate;
+
+			}
+		return bulkRate;
+
 		},
 		updateTotalPrice: function(){
 			var lineItems = thisEstimate.lineItemsList;
