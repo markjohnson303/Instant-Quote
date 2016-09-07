@@ -12,6 +12,7 @@ $( document ).ready(function() {
 		constructor: Estimate,
 		addToLineItemsList:function (lineItemToAdd){
 			this.lineItemsList.push(lineItemToAdd);
+			thisEstimate.getBulkCount();
 			thisEstimate.updateTotalPrice();
 		},
 		nextLineItemID:function (){
@@ -27,7 +28,7 @@ $( document ).ready(function() {
 		updateLineItem: function(lineItemID, changedField, newValue){
 			changedLineItem = thisEstimate.lineItemsList[lineItemID];
 			if(changedField === "quantity"){
-				changedLineItem.quantity = newValue;
+				changedLineItem.quantity = parseInt(newValue);
 				changedLineItem.linePrice = newValue * (changedLineItem.unitPrice + changedLineItem.modifierPrice);
 			}else{
 				changedLineItem.option = newValue;
@@ -40,8 +41,10 @@ $( document ).ready(function() {
 				}
 				changedLineItem.linePrice = (changedLineItem.unitPrice + changedLineItem.modifierPrice) * changedLineItem.quantity;
 			}
+			thisEstimate.getBulkCount();
 			thisEstimate.updateTotalPrice();
 		},
+
 		getBulkCount: function(){
 			var lineItems = thisEstimate.lineItemsList;	
 			var bulkCount = 0;
@@ -52,41 +55,38 @@ $( document ).ready(function() {
 				}
 				
 			}
-			 return bulkCount;
+			console.log("bulk count " + bulkCount);
+			return bulkCount;
 		},
 		setBulkRate: function(){
 			var bulkCount = thisEstimate.getBulkCount();
-			console.log(bulkCount);
-			var bulkRate;
-			switch (bulkCount) {
+			var bulkRate; 
+
+			switch (true) {
 				case bulkCount<5:
 				bulkRate = 45;
-				console.Log(bulkRate);
 				break;
 				case bulkCount<10:
 				bulkRate = 41;
-				return bulkRate;
-				case bulkCount<10:
-				bulkRate = 41;
-				return bulkRate;
+				break;
 				case bulkCount<25:
 				bulkRate = 38;
-				return bulkRate;
+				break;
 				case bulkCount<50:
 				bulkRate = 36;
-				return bulkRate;
+				break;
 				case bulkCount<100:
 				bulkRate = 33;
-				return bulkRate;
+				break;
 				case bulkCount<250:
 				bulkRate = 30;
-				return bulkRate;
+				break;
 				case bulkCount<500:
 				bulkRate = 27;
-				return bulkRate;
+				break;
 
 			}
-		return bulkRate;
+			return bulkRate;
 
 		},
 		updateTotalPrice: function(){
@@ -143,7 +143,7 @@ $( document ).ready(function() {
 				lineid = this.getAttribute("data-lineid");
 				thisEstimate.updateLineItem(lineid, "quantity", this.value);
 				changedLineItem = thisEstimate.lineItemsList[lineid];
-				newQuantity = this.value;
+				newQuantity = parseInt(this.value);
 				$("#line-item-quantity-" + lineid).text(newQuantity);
 				$("#modified-unit-price-" + lineid).text(changedLineItem.unitPrice + changedLineItem.modifierPrice);
 				$("#line-item-price-" + lineid).text(changedLineItem.linePrice);
@@ -157,9 +157,9 @@ $( document ).ready(function() {
 					$("#line-item-price-" + lineid).text(changedLineItem.linePrice);
 					$("#modified-unit-price-" + lineid).text(changedLineItem.unitPrice + changedLineItem.modifierPrice);
 				});
-				$('form').on('keypress', function(e) {
-			    return e.which !== 13;
-				});
+			$('form').on('keypress', function(e) {
+				return e.which !== 13;
+			});
 		}
 	};
 
