@@ -55,7 +55,7 @@ $( document ).ready(function() {
 					lineItems[i].unitPrice = bulkRate;
 					lineItems[i].linePrice = (lineItems[i].unitPrice + lineItems[i].modifierPrice) *lineItems[i].quantity;
 					$("#modified-unit-price-" + i).text(lineItems[i].unitPrice + lineItems[i].modifierPrice);
-					$("#line-item-price-" + i).text(changedLineItem.linePrice);
+					$("#line-item-price-" + i).text(lineItems[i].linePrice);
 				}
 			}
 			this.updateTotalPrice();
