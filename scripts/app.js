@@ -159,7 +159,7 @@ $( document ).ready(function() {
 				$("#line-item-" + result).hide();
 				thisEstimate.updateTotalPrice();
 			});
-			$(".quantity").keyup(function(){
+			$(".quantity").on('keyup change', function(){
 				lineid = this.getAttribute("data-lineid");
 				thisEstimate.updateLineItem(lineid, "quantity", this.value);
 				changedLineItem = thisEstimate.lineItemsList[lineid];
