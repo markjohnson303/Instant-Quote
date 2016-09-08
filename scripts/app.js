@@ -28,7 +28,7 @@ $( document ).ready(function() {
 		updateLineItem: function(lineItemID, changedField, newValue){
 			changedLineItem = thisEstimate.lineItemsList[lineItemID];
 			if(changedField === "quantity"){
-				changedLineItem.quantity = parseInt(newValue);
+				changedLineItem.quantity = parseInt(newValue) || 0;
 				changedLineItem.linePrice = newValue * (changedLineItem.unitPrice + changedLineItem.modifierPrice);
 			}else{
 				changedLineItem.option = newValue;
@@ -101,6 +101,9 @@ $( document ).ready(function() {
 				case bulkCount<500:
 				bulkRate = 27;
 				break;
+				case bulkCount>500:
+				bulkRate = 20;
+				break;
 
 			}
 			return bulkRate;
@@ -156,11 +159,11 @@ $( document ).ready(function() {
 				$("#line-item-" + result).hide();
 				thisEstimate.updateTotalPrice();
 			});
-			$(".quantity").change(function(){
+			$(".quantity").keyup(function(){
 				lineid = this.getAttribute("data-lineid");
 				thisEstimate.updateLineItem(lineid, "quantity", this.value);
 				changedLineItem = thisEstimate.lineItemsList[lineid];
-				newQuantity = parseInt(this.value);
+				newQuantity = parseInt(this.value) || 0;
 				$("#line-item-quantity-" + lineid).text(newQuantity);
 				$("#modified-unit-price-" + lineid).text(changedLineItem.unitPrice + changedLineItem.modifierPrice);
 				$("#line-item-price-" + lineid).text(changedLineItem.linePrice);
