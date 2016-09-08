@@ -43,7 +43,24 @@ $( document ).ready(function() {
 			}
 			thisEstimate.getBulkCount();
 			thisEstimate.updateTotalPrice();
+			this.applyBulkRate();
 		},
+
+		applyBulkRate: function(){
+			bulkRate = this.setBulkRate();
+			var lineItems = thisEstimate.lineItemsList;
+			for (var i = lineItems.length - 1; i >= 0; i--) {
+				productType = lineItems[i].product;
+				if (lineItems[i].active && ((productType == "necktie") || (productType == "bow tie") || (productType =="scarf"))){
+					lineItems[i].unitPrice = bulkRate;
+					lineItems[i].linePrice = (lineItems[i].unitPrice + lineItems[i].modifierPrice) *lineItems[i].quantity;
+					$("#modified-unit-price-" + i).text(lineItems[i].unitPrice + lineItems[i].modifierPrice);
+					$("#line-item-price-" + i).text(changedLineItem.linePrice);
+				}
+			}
+			this.updateTotalPrice();
+		},
+
 
 		getBulkCount: function(){
 			var lineItems = thisEstimate.lineItemsList;	
