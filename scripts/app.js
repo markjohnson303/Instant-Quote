@@ -89,25 +89,15 @@ $( document ).ready(function() {
 				case bulkCount<25:
 				bulkRate = 38;
 				break;
-				case bulkCount<50:
-				bulkRate = 36;
-				break;
 				case bulkCount<100:
-				bulkRate = 33;
-				break;
-				case bulkCount<250:
 				bulkRate = 30;
 				break;
 				case bulkCount<500:
-				bulkRate = 27;
+				bulkRate = 25;
 				break;
-				case bulkCount<1000:
-				bulkRate = 24;
-				break;
-				case bulkCount>909:
+				case bulkCount>499:
 				bulkRate = 21;
 				break;
-
 			}
 			return bulkRate;
 
