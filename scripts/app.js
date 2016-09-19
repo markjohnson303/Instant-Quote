@@ -104,7 +104,7 @@ $( document ).ready(function() {
 				case bulkCount<1000:
 				bulkRate = 24;
 				break;
-				case bulkCount>1000:
+				case bulkCount>909:
 				bulkRate = 21;
 				break;
 
