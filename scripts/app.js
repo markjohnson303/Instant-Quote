@@ -101,14 +101,20 @@ $( document ).ready(function() {
 				case bulkCount<25:
 				bulkRate = 38;
 				break;
-				case bulkCount<100:
+				case bulkCount<50:
 				bulkRate = 30;
 				break;
-				case bulkCount<500:
+				case bulkCount<100:
 				bulkRate = 25;
 				break;
-				case bulkCount>499:
+				case bulkCount<250:
 				bulkRate = 21;
+				break;
+				case bulkCount<500:
+				bulkRate = 18;
+				break;
+				case bulkCount>499:
+				bulkRate = 16;
 				break;
 			}
 			switch (true) {
