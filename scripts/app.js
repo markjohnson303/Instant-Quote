@@ -89,7 +89,8 @@ $( document ).ready(function() {
 			var bulk = thisEstimate.getBulkCount();
 			var bulkCount = bulk.bulkCount;
 			var bulkSquares = bulk.bulkSquares;
-			var bulkRate; 
+			var bulkRate;
+			//dummy 
 
 			switch (true) {
 				case bulkCount<5:
